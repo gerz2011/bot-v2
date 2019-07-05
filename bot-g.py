@@ -2,9 +2,9 @@ import telebot
 import math
 import requests
 import json
-from telebot import apihelper
+# from telebot import apihelper
 from telebot import types
-apihelper.proxy = {'https': 'https://62.141.35.197:3128'}
+# apihelper.proxy = {'https': 'https://62.141.35.197:3128'}
 # proxies = {"https": "https://62.141.35.197:3128"}
 # apihelper.proxy = {'https': 'https://188.216.77.95:8118'}
 # apihelper.proxy = {'https': 'https://185.69.152.18:3128'}
