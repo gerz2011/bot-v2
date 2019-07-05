@@ -30,6 +30,8 @@ ct = ''
 couse = ''
 
 # ------------------------------
+
+
 def find_mac(s):
     se = s[0:5].upper() + 'XX' + s[-2:].upper()
     for i in model_m:
@@ -47,20 +49,25 @@ def getMassagePrice(m):
         couse = pb_m
     arr = [f'🍏 {ct} {m}:\n...............................']
     num = 0
-    for key in pr[ct][m]:
-        if key != '---':
-            arr.append(f'{couse[num]} {key}р.')
-        num += 1
+    if m in list(pr[ct]):
+        for key in pr[ct][m]:
+            if key != '---':
+                arr.append(f'{couse[num]} {key}р.')
+            num += 1
+    else: text = 'ой..'
     arr.append(contact_massage)
     text = '\n'.join(arr)
     return text
 
 # -------------------------------
+
+
 def creatBtn(arr, collum):
     markup = types.ReplyKeyboardMarkup(True)
     array = []
     collum = 3
-    if ct == 'iPhone': collum = 4
+    if ct == 'iPhone':
+        collum = 4
     for i in arr:
         w = 0
         for iter in range(math.ceil(len(i) / collum)):
@@ -97,34 +104,41 @@ def answe(m):
         elif len(m.text) > 5:
             bot.send_message(m.from_user.id, find_mac(m.text))
         else:
-            bot.send_message(m.from_user.id, 'Или все сломалось или укажите правильно модель')
+            bot.send_message(
+                m.from_user.id, 'Или все сломалось или укажите правильно модель')
 
-        requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
-            
+        requests.get(
+            f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
 
     elif ct in list(pr):
         massage = getMassagePrice(m.text)
         bot.send_message(m.from_user.id, massage)
 
-        requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
+        requests.get(
+            f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
 
     elif m.text in list(pr):
         ct = m.text
         mt = creatBtn([list(pr[ct])], 4)
         mt.row('в начало')
-        bot.send_message(m.from_user.id, 'Прайс на ремонт айфонов', reply_markup=mt)
+        bot.send_message(
+            m.from_user.id, 'Прайс на ремонт айфонов', reply_markup=mt)
 
     elif m.text == 'определить модель':
         ct = m.text
         mt = types.ReplyKeyboardMarkup(True)
         mt.row('в начало')
-        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (только цифры!)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)        
+        bot.send_message(
+            m.from_user.id, 'у iPhone модель типа - AXXXX (только цифры!)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
 
     elif m.text == 'контакты':
         mt = types.InlineKeyboardMarkup()
-        bt_site = types.InlineKeyboardButton('Наш сайт', 'https://profiphone.ru/')
-        bt_vk = types.InlineKeyboardButton('Вконтакте', 'https://vk.com/yablonya_spb')
-        bt_ya_map = types.InlineKeyboardButton('Яндекс карта', 'https://yandex.ru/maps/?um=constructor%3Ac25054319007c6053f87b0125d81dd198df8a2759cb2b885d40629cf0ad770e1&source=constructorLink')
+        bt_site = types.InlineKeyboardButton(
+            'Наш сайт', 'https://profiphone.ru/')
+        bt_vk = types.InlineKeyboardButton(
+            'Вконтакте', 'https://vk.com/yablonya_spb')
+        bt_ya_map = types.InlineKeyboardButton(
+            'Яндекс карта', 'https://yandex.ru/maps/?um=constructor%3Ac25054319007c6053f87b0125d81dd198df8a2759cb2b885d40629cf0ad770e1&source=constructorLink')
         mt.row(bt_site, bt_vk, bt_ya_map)
         mt.row(bt_ya_map)
         bot.send_message(m.from_user.id, d['contact'], reply_markup=mt)
@@ -132,6 +146,8 @@ def answe(m):
     else:
         mt = types.ReplyKeyboardMarkup(True)
         mt.row('в начало')
-        bot.send_message(m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)  
+        bot.send_message(
+            m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)
+
 
 bot.polling()
