@@ -12,7 +12,7 @@ TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
 # TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
 bot = telebot.TeleBot(TOKEN)
 
-with open('gerz/pr.json', encoding='utf-8') as f:
+with open('pr.json', encoding='utf-8') as f:
     d = json.load(f)
 
 pr = d['price']
