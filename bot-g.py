@@ -122,7 +122,7 @@ def answe(m):
         bot.send_message(m.from_user.id, massage)
 
         requests.get(
-            f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
+            f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=модель - {m.text}")
 
     elif m.text in list(pr):
         ct = m.text
