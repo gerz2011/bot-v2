@@ -33,17 +33,17 @@ couse = ''
 
 
 def find_mac(s):
-    print(s)
     se = s[0:5].upper() + 'XX' + s[-2:].upper()
     print(se)
     for i in model_m:
         for e in model_m[i][1][0]:
+            print(e)
             if e == se:
                 m = f'{model_m[i][0][0]}\nартикулы: {", ".join(model_m[i][1][0])}\n{model_m[i][2][0]}'
-            else: 
-                m = 'ой..'
                 return m
-    return m
+            else:
+                m = 'ой..'
+                return m 
 
 
 # -----------------------------
@@ -59,7 +59,7 @@ def getMassagePrice(m):
             if key != '---':
                 arr.append(f'{couse[num]} {key}р.')
             num += 1
-    else: 
+    else:
         text = 'ой..'
         return text
     arr.append(contact_massage)
