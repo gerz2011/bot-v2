@@ -54,7 +54,9 @@ def getMassagePrice(m):
             if key != '---':
                 arr.append(f'{couse[num]} {key}р.')
             num += 1
-    else: text = 'ой..'
+    else: 
+        text = 'ой..'
+        return text
     arr.append(contact_massage)
     text = '\n'.join(arr)
     return text
