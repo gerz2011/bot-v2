@@ -33,11 +33,14 @@ couse = ''
 
 
 def find_mac(s):
+    print(s)
     se = s[0:5].upper() + 'XX' + s[-2:].upper()
+    print(se)
     for i in model_m:
         for e in model_m[i][1][0]:
             if e == se:
                 m = f'{model_m[i][0][0]}\nартикулы: {", ".join(model_m[i][1][0])}\n{model_m[i][2][0]}'
+            else: m = 'ой..'
     return m
 
 
@@ -103,7 +106,7 @@ def answe(m):
     elif ct == 'определить модель':
         if m.text in list(model_i):
             bot.send_message(m.from_user.id, model_i[m.text])
-        elif len(m.text) > 5:
+        elif len(m.text) > 3:
             bot.send_message(m.from_user.id, find_mac(m.text))
         else:
             bot.send_message(
