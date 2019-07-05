@@ -8,7 +8,8 @@ from telebot import types
 # proxies = {"https": "https://62.141.35.197:3128"}
 # apihelper.proxy = {'https': 'https://188.216.77.95:8118'}
 # apihelper.proxy = {'https': 'https://185.69.152.18:3128'}
-TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'# TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
+TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
+# TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
 bot = telebot.TeleBot(TOKEN)
 
 with open('pr.json', encoding='utf-8') as f:
@@ -92,20 +93,20 @@ def answe(m):
 
     elif ct == 'определить модель':
         if m.text in list(model_i):
-            print(model_i[m.text])
             bot.send_message(m.from_user.id, model_i[m.text])
         elif len(m.text) > 5:
-            print(find_mac(m.text))
             bot.send_message(m.from_user.id, find_mac(m.text))
         else:
-            print('укажите правильно модель')
             bot.send_message(m.from_user.id, 'Или все сломалось или укажите правильно модель')
+
+        requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
             
 
     elif ct in list(pr):
-        print('123')
         massage = getMassagePrice(m.text)
         bot.send_message(m.from_user.id, massage)
+
+        requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
 
     elif m.text in list(pr):
         ct = m.text
@@ -117,11 +118,9 @@ def answe(m):
         ct = m.text
         mt = types.ReplyKeyboardMarkup(True)
         mt.row('в начало')
-        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (только цифры!)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
-        
+        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (только цифры!)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)        
 
     elif m.text == 'контакты':
-        print(d['contact'])
         mt = types.InlineKeyboardMarkup()
         bt_site = types.InlineKeyboardButton('Наш сайт', 'https://profiphone.ru/')
         bt_vk = types.InlineKeyboardButton('Вконтакте', 'https://vk.com/yablonya_spb')
@@ -131,7 +130,8 @@ def answe(m):
         bot.send_message(m.from_user.id, d['contact'], reply_markup=mt)
 
     else:
-        print('no word')
-
+        mt = types.ReplyKeyboardMarkup(True)
+        mt.row('в начало')
+        bot.send_message(m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)  
 
 bot.polling()
