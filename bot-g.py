@@ -42,7 +42,7 @@ def find_mac(s):
                 m = f'{model_m[i][0][0]}\nартикулы: {", ".join(model_m[i][1][0])}\n{model_m[i][2][0]}'
                 return m
             else:
-                m = 'ой..'
+                m = 'опс..'
                 return m 
 
 
@@ -108,7 +108,7 @@ def answe(m):
     elif ct == 'определить модель':
         if m.text in list(model_i):
             bot.send_message(m.from_user.id, model_i[m.text])
-        elif len(m.text) >= 8:
+        elif len(m.text) >= 6:
             bot.send_message(m.from_user.id, find_mac(m.text))
         else:
             bot.send_message(
