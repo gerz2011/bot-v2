@@ -40,7 +40,9 @@ def find_mac(s):
         for e in model_m[i][1][0]:
             if e == se:
                 m = f'{model_m[i][0][0]}\nартикулы: {", ".join(model_m[i][1][0])}\n{model_m[i][2][0]}'
-            else: m = 'ой..'
+            else: 
+                m = 'ой..'
+                return m
     return m
 
 
