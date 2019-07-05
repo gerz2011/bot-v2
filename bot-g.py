@@ -42,7 +42,7 @@ def find_mac(s):
                 m = f'{model_m[i][0][0]}\nартикулы: {", ".join(model_m[i][1][0])}\n{model_m[i][2][0]}'
                 return m
             else:
-                m = 'опс..'
+                m = 'опс.. . макбука с такой моделью нет '
                 return m 
 
 
@@ -111,18 +111,14 @@ def answe(m):
         elif len(m.text) >= 6:
             bot.send_message(m.from_user.id, find_mac(m.text))
         else:
-            bot.send_message(
-                m.from_user.id, 'Или все сломалось или укажите правильно модель')
-
+            bot.send_message(m.from_user.id, 'Или все сломалось или укажите правильно модель')
         requests.get(
             f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
 
     elif ct in list(pr):
         massage = getMassagePrice(m.text)
         bot.send_message(m.from_user.id, massage)
-
-        requests.get(
-            f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=модель - {m.text}")
+        requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=модель - {m.text}")
 
     elif m.text in list(pr):
         ct = m.text
