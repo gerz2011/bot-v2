@@ -154,4 +154,4 @@ def answe(m):
             m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)
 
 
-# bot.polling()
+bot.polling()
