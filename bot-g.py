@@ -108,7 +108,7 @@ def answe(m):
     elif ct == 'определить модель':
         if m.text in list(model_i):
             bot.send_message(m.from_user.id, model_i[m.text])
-        elif len(m.text) > 3:
+        elif len(m.text) >= 8:
             bot.send_message(m.from_user.id, find_mac(m.text))
         else:
             bot.send_message(
