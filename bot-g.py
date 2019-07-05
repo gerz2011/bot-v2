@@ -29,6 +29,7 @@ mine_bt.append('контакты')
 ct = ''
 couse = ''
 
+
 # ------------------------------
 
 
@@ -36,8 +37,13 @@ def find_mac(s):
     se = s[0:5].upper() + 'XX' + s[-2:].upper()
     for i in model_m:
         if se in model_m[i][1][0]:
-            return  f'{model_m[i][0][0]}\nартикулы: {", ".join(model_m[i][1][0])}\n{model_m[i][2][0]}'
-        else: return 'опс... не нашёл'
+            return f'{model_m[i][0][0]}\nартикулы: {", ".join(model_m[i][1][0])}\n{model_m[i][2][0]}'
+
+    for i in model_m:
+        if se not in model_m[i][1][0]:
+             return 'опс... не нашёл'
+            
+
 
 
 # -----------------------------
@@ -88,7 +94,7 @@ def start_massage(m):
 
 @bot.message_handler(content_types=['text'])
 def answe(m):
-    print(m.text)
+    # print(m.text)
     global ct
 
     if m.text == 'в начало':
@@ -102,13 +108,11 @@ def answe(m):
     elif ct == 'определить модель':
         if m.text in list(model_i):
             bot.send_message(m.from_user.id, model_i[m.text])
-        elif len(m.text) >= 6:
+        elif m.text not in list(model_i):
             mt = types.ReplyKeyboardMarkup(True)
-            mt.row('определть модель')
+            mt.row('в начало')
             bot.send_message(m.from_user.id, find_mac(m.text), reply_markup=mt)
 
-        elif m.text == 'определть модель':
-            print()
 
         else:
             bot.send_message(m.from_user.id, 'Или все сломалось или укажите правильно модель')
@@ -150,4 +154,4 @@ def answe(m):
             m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)
 
 
-bot.polling()
+# bot.polling()
