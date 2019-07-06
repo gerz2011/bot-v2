@@ -8,11 +8,11 @@ from telebot import types
 # proxies = {"https": "https://62.141.35.197:3128"}
 # apihelper.proxy = {'https': 'https://188.216.77.95:8118'}
 # apihelper.proxy = {'https': 'https://185.69.152.18:3128'}
-TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
-# TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
+# TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
+TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
 bot = telebot.TeleBot(TOKEN)
 
-with open('pr.json', encoding='utf-8') as f:
+with open('gerz/pr.json', encoding='utf-8') as f:
     d = json.load(f)
 
 pr = d['price']
@@ -46,7 +46,9 @@ def find_mac(s):
 def find_i(s):
     if len(s) == 4:
         return model_i[s]
-    elif len(s) == 5:
+    else:
+        return 'опс... не нашёл'
+    if len(s) == 5:
         se = s[-4:]
         return model_i[se]
     else:
@@ -96,7 +98,14 @@ def creatBtn(arr, collum):
     for i in array:
         markup.row(*[types.KeyboardButton(name) for name in i])
     return markup
-# ==================================
+
+# ---------------------------------
+
+def inlineMt(text, callback):
+    mt = types.InlineKeyboardMarkup()
+    bt = types.InlineKeyboardButton(text, callback_data=callback)
+    mt.add(bt)
+    return mt
 
 
 @bot.message_handler(commands=['start'])
@@ -113,10 +122,14 @@ def answe(m):
     if m.text == 'в начало':
         ct = ''
         mt = creatBtn([mine_bt], 3)
+        # mt.add('test')
         bot.send_message(m.from_user.id, 'главное меню', reply_markup=mt)
 
     elif ct == m.text:
         ct = m.text
+
+    # elif m.text == 'test':
+    #    bot.send_message(m.from_user.id, 'massege', reply_markup=inlineMt('text', 'test'))
 
     elif ct == 'определить модель':
         mt = types.ReplyKeyboardMarkup(True)
@@ -160,6 +173,16 @@ def answe(m):
         mt.row('в начало')
         bot.send_message(
             m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)
+
+@bot.callback_query_handler(func=lambda c: True)
+def inline(c):
+    # print(c)
+    bot.edit_message_text(
+        chat_id=c.message.chat.id,
+        message_id=c.message.message_id,
+        text='test text from bot',
+        parse_mode='Markdown'
+    )
 
 
 bot.polling()
