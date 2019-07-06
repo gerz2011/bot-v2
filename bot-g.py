@@ -54,12 +54,9 @@ def find_i(s):
 
 
 
-# def find_model(s):
-#     print(len(s))
-#     if len(s) <= 5:
-#         print('1 - '+ s)
-#     elif len(s) == 9 | len(s) == 10: print('2 - '+ s)
-#     else: print('3 - '+ s)
+def find_model(s):
+if len(s) < 5:
+
 
 
 
@@ -171,4 +168,4 @@ def answe(m):
             m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)
 
 
-# bot.polling()
+bot.polling()
