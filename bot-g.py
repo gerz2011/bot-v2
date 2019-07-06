@@ -12,7 +12,7 @@ TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
 # TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
 bot = telebot.TeleBot(TOKEN)
 
-with open('pr.json', encoding='utf-8') as f:
+with open(pr.json', encoding='utf-8') as f:
     d = json.load(f)
 
 pr = d['price']
@@ -42,9 +42,6 @@ def find_mac(s):
     for i in model_m:
         if se not in model_m[i][1][0]:
             return 'опс... не нашёл'
-
-#  --------------------------------
-
 
 def find_i(s):
     if len(s) == 4:
@@ -122,12 +119,9 @@ def answe(m):
         ct = m.text
 
     elif ct == 'определить модель':
-        if m.text in list(model_i):
-            mt = types.ReplyKeyboardMarkup(True)
-            mt.row('в начало')
-            bot.send_message(m.from_user.id, find_model(m.text), reply_markup=mt)
-        else:
-            bot.send_message(m.from_user.id, 'Или все сломалось или укажите правильно модель')
+        mt = types.ReplyKeyboardMarkup(True)
+        mt.row('в начало')
+        bot.send_message(m.from_user.id, find_model(m.text), reply_markup=mt)
         requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {find_model(m.text)}")
 
     elif ct in list(pr):
