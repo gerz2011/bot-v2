@@ -45,14 +45,17 @@ def find_mac(s):
 
 def find_i(s):
     if len(s) == 4:
-        return model_i[s]
-    else:
+        if s in model_i:
+            return model_i[s]
+        else:
         return 'опс... не нашёл'
+
     if len(s) == 5:
         se = s[-4:]
-        return model_i[se]
-    else:
-        return 'опс... не нашёл'
+        if se in model_i:
+            return model_i[se]
+        else:
+            return 'опс... не нашёл'
 
 
 def find_model(s):
