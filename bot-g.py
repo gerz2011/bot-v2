@@ -48,7 +48,7 @@ def find_i(s):
         if s in model_i:
             return model_i[s]
         else:
-        return 'опс... не нашёл'
+            return 'опс... не нашёл'
 
     if len(s) == 5:
         se = s[-4:]
