@@ -12,7 +12,7 @@ TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
 # TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
 bot = telebot.TeleBot(TOKEN)
 
-with open('gerz/pr.json', encoding='utf-8') as f:
+with open('pr.json', encoding='utf-8') as f:
     d = json.load(f)
 
 pr = d['price']
@@ -137,7 +137,7 @@ def answe(m):
         ct = m.text
         mt = types.ReplyKeyboardMarkup(True)
         mt.row('в начало')
-        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (--ТОЛЬКО ЦИФРЫ!!!! БЕЗ БУКВЫ А--)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
+        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (A1778)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
 
     elif m.text == 'контакты':
         mt = types.InlineKeyboardMarkup()
