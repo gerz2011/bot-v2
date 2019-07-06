@@ -8,8 +8,8 @@ from telebot import types
 # proxies = {"https": "https://62.141.35.197:3128"}
 # apihelper.proxy = {'https': 'https://188.216.77.95:8118'}
 # apihelper.proxy = {'https': 'https://185.69.152.18:3128'}
-# TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
-TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
+TOKEN = '781098537:AAEGQ7-kRv6Pt8KGs5CfW9RiPRLU8lKHp58'
+# TOKEN = '644721358:AAFoPs-lWeq6zEzxeJal5joAr2kPfCTtPag'
 bot = telebot.TeleBot(TOKEN)
 
 with open('pr.json', encoding='utf-8') as f:
