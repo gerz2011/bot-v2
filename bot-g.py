@@ -52,6 +52,21 @@ def find_i(s):
         return model_i[se]
     else: return 'опс... не нашёл'
 
+
+
+# def find_model(s):
+#     print(len(s))
+#     if len(s) <= 5:
+#         print('1 - '+ s)
+#     elif len(s) == 9 | len(s) == 10: print('2 - '+ s)
+#     else: print('3 - '+ s)
+
+
+
+
+
+
+
 # -----------------------------
 def getMassagePrice(m):
     global ct, pb_i, pb_m
@@ -65,9 +80,8 @@ def getMassagePrice(m):
             if key != '---':
                 arr.append(f'{couse[num]} {key}р.')
             num = num + 1
-            arr.append(contact_massage)
-            return '\n'.join(arr)
-            
+    arr.append(contact_massage)
+    return '\n'.join(arr)       
     else: return 'ой..'
         
 
@@ -157,4 +171,4 @@ def answe(m):
             m.from_user.id, 'что-то не понятно, начни с начала', reply_markup=mt)
 
 
-bot.polling()
+# bot.polling()
