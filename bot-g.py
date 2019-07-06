@@ -59,12 +59,11 @@ def getMassagePrice(m):
             if key != '---':
                 arr.append(f'{couse[num]} {key}р.')
             num += 1
-    else:
-        text = 'ой..'
-        return text
-    arr.append(contact_massage)
-    text = '\n'.join(arr)
-    return text
+            arr.append(contact_massage)
+            return '\n'.join(arr)
+            
+    else: return 'ой..'
+        
 
 # -------------------------------
 
@@ -112,8 +111,6 @@ def answe(m):
             mt = types.ReplyKeyboardMarkup(True)
             mt.row('в начало')
             bot.send_message(m.from_user.id, find_mac(m.text), reply_markup=mt)
-
-
         else:
             bot.send_message(m.from_user.id, 'Или все сломалось или укажите правильно модель')
         requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
@@ -134,7 +131,7 @@ def answe(m):
         ct = m.text
         mt = types.ReplyKeyboardMarkup(True)
         mt.row('в начало')
-        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (только цифры!)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
+        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (--ТОЛЬКО ЦИФРЫ!!!! БЕЗ БУКВЫ А--)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
 
     elif m.text == 'контакты':
         mt = types.InlineKeyboardMarkup()
