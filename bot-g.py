@@ -41,27 +41,26 @@ def find_mac(s):
 
     for i in model_m:
         if se not in model_m[i][1][0]:
-             return 'опс... не нашёл'
+            return 'опс... не нашёл'
 
 #  --------------------------------
+
+
 def find_i(s):
     if len(s) == 4:
         return model_i[s]
     elif len(s) == 5:
         se = s[-4:]
         return model_i[se]
-    else: return 'опс... не нашёл'
+    else:
+        return 'опс... не нашёл'
 
 
-
-# def find_model(s):
-# if len(s) < 5:
-
-
-
-
-
-
+def find_model(s):
+    if len(s) <= 5:
+        return find_i(s)
+    if len(s) >= 6:
+        return find_mac(s)
 
 
 # -----------------------------
@@ -76,11 +75,12 @@ def getMassagePrice(m):
         for key in pr[ct][m]:
             if key != '---':
                 arr.append(f'{couse[num]} {key}р.')
-            num = num + 1    
-    else: return 'ой..'
+            num = num + 1
+    else:
+        return 'ой..'
     arr.append(contact_massage)
-    return '\n'.join(arr)   
-        
+    return '\n'.join(arr)
+
 
 # -------------------------------
 
@@ -123,14 +123,12 @@ def answe(m):
 
     elif ct == 'определить модель':
         if m.text in list(model_i):
-            bot.send_message(m.from_user.id, find_i(m.text))
-        elif m.text not in list(model_i):
             mt = types.ReplyKeyboardMarkup(True)
             mt.row('в начало')
-            bot.send_message(m.from_user.id, find_mac(m.text), reply_markup=mt)
+            bot.send_message(m.from_user.id, find_model(m.text), reply_markup=mt)
         else:
             bot.send_message(m.from_user.id, 'Или все сломалось или укажите правильно модель')
-        requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {m.text}")
+        requests.get(f"https://api.telegram.org/bot716800010:AAGDzPcbgMuqqIMJGUE85gRnFfayQkcYoTw/sendMessage?chat_id=79802958&text=запрос - {find_model(m.text)}")
 
     elif ct in list(pr):
         massage = getMassagePrice(m.text)
@@ -148,7 +146,8 @@ def answe(m):
         ct = m.text
         mt = types.ReplyKeyboardMarkup(True)
         mt.row('в начало')
-        bot.send_message(m.from_user.id, 'у iPhone модель типа - AXXXX (A1778)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
+        bot.send_message(
+            m.from_user.id, 'у iPhone модель типа - AXXXX (A1778)\nу MacBook модель типа - MC503RU/A (регистр не важен)', reply_markup=mt)
 
     elif m.text == 'контакты':
         mt = types.InlineKeyboardMarkup()
@@ -156,7 +155,8 @@ def answe(m):
             'Наш сайт', 'https://profiphone.ru/')
         bt_vk = types.InlineKeyboardButton(
             'Вконтакте', 'https://vk.com/yablonya_spb')
-        bt_ya_map = types.InlineKeyboardButton('Яндекс карта', 'https://yandex.ru/maps/?um=constructor%3Ac25054319007c6053f87b0125d81dd198df8a2759cb2b885d40629cf0ad770e1&source=constructorLink')
+        bt_ya_map = types.InlineKeyboardButton(
+            'Яндекс карта', 'https://yandex.ru/maps/?um=constructor%3Ac25054319007c6053f87b0125d81dd198df8a2759cb2b885d40629cf0ad770e1&source=constructorLink')
         mt.row(bt_site, bt_vk, bt_ya_map)
         mt.row(bt_ya_map)
         bot.send_message(m.from_user.id, d['contact'], reply_markup=mt)
