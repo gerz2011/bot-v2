@@ -54,8 +54,8 @@ def find_i(s):
 
 
 
-def find_model(s):
-if len(s) < 5:
+# def find_model(s):
+# if len(s) < 5:
 
 
 
