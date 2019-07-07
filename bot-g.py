@@ -131,6 +131,11 @@ def answe(m):
     elif ct == m.text:
         ct = m.text
 
+    elif m.text == 'ой..':
+        mt = creatBtn([mine_bt], 3)
+        bot.send_message(m.from_user.id, 'главное меню', reply_markup=mt)
+        
+
     # elif m.text == 'test':
     #    bot.send_message(m.from_user.id, 'massege', reply_markup=inlineMt('text', 'test'))
 
